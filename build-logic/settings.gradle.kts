@@ -12,4 +12,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "dosimetry_tools-build-logic"
+rootProject.name = "rad-toolkit-build-logic"

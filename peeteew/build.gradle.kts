@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.tomvercaut.dosimetry_tools.kotlin-library-conventions")
+    id("io.github.tomvercaut.rad-toolkit.kotlin-library-conventions")
 }
 
 dependencies {
