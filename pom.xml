@@ -3,16 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.tomvercaut</groupId>
+    <groupId>io.github.tomvercaut.rad_toolkit</groupId>
     <artifactId>rad-toolkit</artifactId>
     <version>0.0.1</version>
     <packaging>pom</packaging>
     <name>rad-toolkit</name>
 
     <modules>
-        <!--        <module>sub-project1</module>-->
-        <!--        <module>sub-project2</module>-->
-        <!-- Add more module tags as necessary -->
+        <module>peeteew</module>
     </modules>
 
     <repositories>
@@ -25,9 +23,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--        -->
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <!--        -->
+        <kotlin.version>1.9.24</kotlin.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.version>3.13.0</maven.compiler.version>
         <maven.clean.version>3.3.2</maven.clean.version>
         <maven.deploy.version>3.1.2</maven.deploy.version>
@@ -37,7 +36,7 @@
         <maven.site.version>4.0.0-M1</maven.site.version>
         <maven.surefire.version>3.2.5</maven.surefire.version>
         <maven.jar.version>3.4.1</maven.jar.version>
-<!--        -->
+        <!--        -->
         <junit.version>5.10.2</junit.version>
         <jetbrains.annotations.version>24.1.0</jetbrains.annotations.version>
         <lombok.version>1.18.30</lombok.version>
@@ -47,7 +46,7 @@
         <fasterxml.jackson.datatype.version>2.16.2</fasterxml.jackson.datatype.version>
         <qos.logback.classic.version>1.5.6</qos.logback.classic.version>
         <qos.logback.core.version>1.5.6</qos.logback.core.version>
-        <slf4j.api.version>1.5.6</slf4j.api.version>
+        <slf4j.api.version>2.0.13</slf4j.api.version>
         <ajalt.clikt.version>4.3.0</ajalt.clikt.version>
         <dcm4che.core.version>5.31.1</dcm4che.core.version>
         <dcm4che.dict.version>5.31.1</dcm4che.dict.version>
@@ -55,6 +54,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-bom</artifactId>
+                <version>${kotlin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -98,6 +104,11 @@
                 <version>${qos.logback.core.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.api.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.ajalt.clikt</groupId>
                 <artifactId>clikt</artifactId>
                 <version>${ajalt.clikt.version}</version>
@@ -118,6 +129,39 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                                <!--<sourceDir>${project.basedir}/src/main/java</sourceDir>-->
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                                <!--<sourceDir>${project.basedir}/src/test/java</sourceDir>-->
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
@@ -125,6 +169,30 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>java-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>java-test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
