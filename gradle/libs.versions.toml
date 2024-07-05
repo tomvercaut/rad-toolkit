@@ -2,7 +2,28 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-kotlin-gradle-plugin = "1.9.23"
+kotlin-gradle-plugin = "2.0.0"
+jetbrains-annotations = "24.1.0"
+dom4j = "2.1.4"
+fasterxml-jackson = "2.16.2"
+logback = "1.5.6"
+slf4j-api = "2.0.13"
+clikt = "4.3.0"
+dcm4che-core = "5.31.1"
+dcm4che-dict = "5.31.1"
+lombok = "1.18.30"
 
 [libraries]
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
+dom4j = { module = "org.dom4j:dom4j", version.ref = "dom4j" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "fasterxml-jackson" }
+jackson-dataformat = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "fasterxml-jackson" }
+jackson-datatype = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "fasterxml-jackson" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+logback-core = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api"}
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt"}
+dcm4che-core = { module = "org.dcm4che:dcm4che-core", version.ref = "dcm4che-core"}
+dcm4che-dict = { module = "org.dcm4che:dcm4che-dict", version.ref = "dcm4che-dict"}
+lombok = {module = "org.projectlombok:lombok", version.ref = "lombok"}
